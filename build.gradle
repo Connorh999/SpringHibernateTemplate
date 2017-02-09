@@ -1,0 +1,43 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE')
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'SpringHibernateTemplate'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    
+    // Provides @EnableTransactionManagement in DBConfig
+    compile('org.springframework:spring-tx')
+    // Provides methods like HibernateTransactionManager in DBConfig
+    compile('org.springframework:spring-orm')
+    // Provides methods like SessionFactory in DBConfig
+    compile('org.hibernate:hibernate-core')
+    // Provides things like BasicDataSource object in DBConfig
+    compile('org.apache.commons:commons-dbcp2')
+    // Allows database to function as relational sql type
+    compile('mysql:mysql-connector-java')
+    
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('junit:junit')
+}
